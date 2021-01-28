@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Vérifiez les valeurs des attributs de l'assembly
 
-<Assembly: AssemblyTitle("TEST_GIT")>
+<Assembly: AssemblyTitle("PPE2.1_KARATE")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("TEST_GIT")>
-<Assembly: AssemblyCopyright("Copyright ©  2021")>
+<Assembly: AssemblyProduct("PPE2.1_KARATE")>
+<Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-<Assembly: Guid("9c7dbfa2-fd82-4d45-a9f1-b6599218a3fa")>
+<Assembly: Guid("76eca96c-03f9-41f3-a43c-dc94c40aab0e")>
 
 ' Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 '
