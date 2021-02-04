@@ -54,6 +54,8 @@ Public Class Form_Membre_CA
     Private Sub Cmd_Retour_Click(sender As Object, e As EventArgs) Handles Cmd_Retour.Click
         Me.Close()
         Form_Membre_Rechercher.Show()
+        Form_Membre_Rechercher.Txt_NomRechercher.Clear()
+        Form_Membre_Rechercher.Txt_PrenomRechercher.Clear()
 
     End Sub
 

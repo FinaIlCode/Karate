@@ -78,6 +78,7 @@ Public Class Form_Membre_Modif
 
             MsgBox("Membre modifiée !")
             Me.Close()
+            Form_Membre_Rechercher.Show()
         End If
 
 

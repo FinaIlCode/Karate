@@ -19,7 +19,7 @@ Public Class Form_Membre_Rechercher
 
         If rdrRech.Read() Then
             Form_Membre_CA.Show()
-            Me.Close()
+            Me.Hide()
         Else
             MsgBox("Le Membre recherché n'existe pas, veuillez réessayer ! ")
             Txt_NomRechercher.Clear()
