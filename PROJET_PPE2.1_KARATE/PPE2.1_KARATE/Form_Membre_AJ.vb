@@ -2,11 +2,14 @@
 
 Public Class Form_Membre_AJ
 
+    'La fonction de ce bouton ferme la page actuel et affiche la page Formulaire_Membre_Connexion précédemment caché.
     Private Sub Cmd_Annuler_Click(sender As Object, e As EventArgs) Handles Cmd_Annuler.Click
         Me.Close()
         Formulaire_Membre_Connexion.Show()
     End Sub
 
+    'La fonction de ce bouton permet d'ajouter un membre en fonction des élément en entré et qui ferme le formulaire si toutes les informations sont validés 
+    'Paramètres en entrée : @licence, @club, @nom, @prenom, @naissance, @rue, @cp et @ville
     Private Sub Cmd_Ajouter_Click(sender As Object, e As EventArgs) Handles Cmd_Ajouter.Click
         Dim err As Boolean
         If Txt_Licence.Text.Length <> 10 Or IsNumeric(Int(Txt_Licence.Text)) = False Then

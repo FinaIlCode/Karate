@@ -3,18 +3,21 @@
 Public Class Form_Membre_Modif
     Public nom As String
     Public prenom As String
+
+    'La fonction de ce bouton récupère les informations dun membre en fonction de son nom et de son prénom et qui les affichent 
+    'Paramètres en entrée : @nom et @prenom qui proviennent de Form_Membre_CA
+    'Renvoie les informations du membre
     Private Sub Form_Membre_Modif_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         nom = Form_Membre_CA.nom
         prenom = Form_Membre_CA.prenom
 
         Dim req As String
         req = "select * from MEMBRE where NOM_MEMBRE=@nom AND PRENOM_MEMBRE=@prenom"
-        'On déclare une variable de type objet "Command" qui exécute une commande (requête SQL) sur la base de données
+
         Dim cmdModif1 As New OleDbCommand(req, maConnexion)
         cmdModif1.Parameters.AddWithValue("@nom", nom)
         cmdModif1.Parameters.AddWithValue("@prenom", prenom)
 
-        'On déclare une variable de type objet "DataReader" qui récupère les enregistrements de la requête de type SELECT
         Dim rdrModif1 As OleDbDataReader = cmdModif1.ExecuteReader()
         rdrModif1.Read()
 
@@ -30,11 +33,18 @@ Public Class Form_Membre_Modif
         Txt_Ville_Modif.Text = rdrModif1.Item("ADR_VILLE_MEMBRE")
     End Sub
 
+    'La fonction de ce bouton renvoie sur la page : Form_Membre_CA'
     Private Sub Cmd_Retour2_Click(sender As Object, e As EventArgs) Handles Cmd_Retour2.Click
         Me.Close()
         Form_Membre_CA.Show()
     End Sub
 
+    'La fonction de ce bouton récupère les informations dun membre en fonction de son nom et de son prénom les affichent puis les modifications sont sauvegardé grâce a la requete update
+    '
+    'Paramètres en entrer pour rechercher le Membre : @nom : provenant de la page : Form_Membre_Rechercher et @prenom : provenant de la page : Form_Membre_Rechercher
+    'Retour de la requete : renvoie le numéro de licence d'un membre 
+    '
+    'Paramètres en entrer pour modifier le Membre :  @newid , @newclub, @newnom, @newprenom, @newnaissance, @newrue, @newcp, @newville qui proviennent du formulaire et @resultat qui provient de la requete select précédemment décrite
     Private Sub Cmd_Enregistrer_Click(sender As Object, e As EventArgs) Handles Cmd_Enregistrer.Click
         Dim id As String
         id = "select NUM_LICENCE from MEMBRE where NOM_MEMBRE=@nom AND PRENOM_MEMBRE=@prenom"

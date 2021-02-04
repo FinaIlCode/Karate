@@ -9,18 +9,21 @@ Public Class Form_Membre_CA
     Public cp As String
     Public rue As String
     Public ville As String
+
+    'Au chargement de la page le formulaire cherche les informations d'un membre en fonction du nom et pronom
+    'Paramètres en entrer pour rechercher le Membre : @nom : provenant de la page : Form_Membre_Rechercher et @prenom : provenant de la page : Form_Membre_Rechercher
+    'Retour de la requete : renvoie toutes les informations d'un membre 
     Private Sub Form_Comp_CA_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         prenom = Form_Membre_Rechercher.prenom
         nom = Form_Membre_Rechercher.nom
         Dim req As String
         req = "select * from MEMBRE where NOM_MEMBRE=@nom AND PRENOM_MEMBRE=@prenom"
-        'On déclare une variable de type objet "Command" qui exécute une commande (requête SQL) sur la base de données
+
         Dim cmdRech As New OleDbCommand(req, maConnexion)
         cmdRech.Parameters.AddWithValue("@nom", nom)
         cmdRech.Parameters.AddWithValue("@prenom", prenom)
 
 
-        'On déclare une variable de type objet "DataReader" qui récupère les enregistrements de la requête de type SELECT
         Dim rdrRech As OleDbDataReader = cmdRech.ExecuteReader()
         rdrRech.Read()
 
@@ -45,12 +48,14 @@ Public Class Form_Membre_CA
 
     End Sub
 
+    'La fonction de ce bouton permet d'afficher la page de modification d'un membre précédemment chercher et cache cette même page 
     Private Sub Cmd_Modifier_Click(sender As Object, e As EventArgs) Handles Cmd_Modifier.Click
         Me.Hide()
         Form_Membre_Modif.Show()
 
     End Sub
 
+    'La fonction de ce bouton permet de fermer la page actuelle et d'afficher la page rechercher précedemment caché, elle réinitialise les champs de recherche dans un même temps
     Private Sub Cmd_Retour_Click(sender As Object, e As EventArgs) Handles Cmd_Retour.Click
         Me.Close()
         Form_Membre_Rechercher.Show()
@@ -59,6 +64,16 @@ Public Class Form_Membre_CA
 
     End Sub
 
+    'La fonction de ce bouton permet de supprimer le membre actuellement recherché pour cela nous devons supprimer les compétitions et les notes associés à ce membre 
+
+    'Fonction pour supprimer une inscription : 
+    'Paramètres en entrée : @nom et @prenom provenant de Form_Membre_Rechercher 
+
+    'Fonction pour supprimer une note : 
+    'Paramètres en entrée : @nom et @prenom provenant de Form_Membre_Rechercher 
+
+    'Fonction pour supprimer un membre : 
+    'Paramètres en entrée : @nom et @prenom provenant de Form_Membre_Rechercher 
     Private Sub Cmd_Suppr_Click(sender As Object, e As EventArgs) Handles Cmd_Suppr.Click
 
         Dim res As Boolean
